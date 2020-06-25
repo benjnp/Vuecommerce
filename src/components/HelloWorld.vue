@@ -1,58 +1,114 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <p>
-      For a guide and recipes on how to configure / customize this project,<br>
-      check out the
-      <a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>.
-    </p>
-    <h3>Installed CLI Plugins</h3>
-    <ul>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel" target="_blank" rel="noopener">babel</a></li>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint" target="_blank" rel="noopener">eslint</a></li>
-    </ul>
-    <h3>Essential Links</h3>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank" rel="noopener">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank" rel="noopener">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank" rel="noopener">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank" rel="noopener">Twitter</a></li>
-      <li><a href="https://news.vuejs.org" target="_blank" rel="noopener">News</a></li>
-    </ul>
-    <h3>Ecosystem</h3>
-    <ul>
-      <li><a href="https://router.vuejs.org" target="_blank" rel="noopener">vue-router</a></li>
-      <li><a href="https://vuex.vuejs.org" target="_blank" rel="noopener">vuex</a></li>
-      <li><a href="https://github.com/vuejs/vue-devtools#vue-devtools" target="_blank" rel="noopener">vue-devtools</a></li>
-      <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
-    </ul>
-  </div>
+  <v-container
+    class="spacing-playground pa-6"
+    fluid
+  >
+    <v-row>
+      <v-col
+        class="d-flex align-center"
+        cols="12"
+        sm="6"
+      >
+        <v-select
+          v-model="paddingDirection"
+          :items="directions"
+          class="pr-2"
+          label="Padding"
+        >
+          <template v-slot:prepend>
+            <strong class="primary--text py-1">p</strong>
+          </template>
+
+          <template v-slot:append-outer>
+            <div class="py-1"> - </div>
+          </template>
+        </v-select>
+
+        <v-select
+          v-model="paddingSize"
+          :items="paddingSizes.slice(1)"
+          label="Size"
+        ></v-select>
+      </v-col>
+
+      <v-col
+        class="d-flex"
+        cols="12"
+        sm="6"
+      >
+        <v-select
+          v-model="marginDirection"
+          :items="directions"
+          class="pr-2"
+          label="Margin"
+        >
+          <template v-slot:prepend>
+            <strong class="primary--text py-1">m</strong>
+          </template>
+
+          <template v-slot:append-outer>
+            <div class="py-1"> - </div>
+          </template>
+        </v-select>
+
+        <v-select
+          v-model="marginSize"
+          :items="marginSizes"
+          label="Size"
+        ></v-select>
+      </v-col>
+
+      <v-col
+        class="orange lighten-3 pa-0"
+        cols="12"
+      >
+        <v-sheet
+          :class="[computedMargin]"
+          elevation="4"
+          rounded
+        >
+          <div
+            :class="[computedPadding]"
+            class="light-green lighten-3"
+          >
+            <div
+              class="white text-center py-6"
+              v-text="playgroundText"
+            ></div>
+          </div>
+        </v-sheet>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
 export default {
-  name: 'HelloWorld',
-  props: {
-    msg: String
-  }
-}
-</script>
+  data() {
+    const spacers = Array.from({ length: 17 }, (val, i) => `${i}`);
+    const nspacers = Array.from({ length: 16 }, (val, i) => `n${i + 1}`);
+    const defaults = ["auto", ...spacers];
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
-</style>
+    return {
+      directions: ["t", "b", "l", "r", "s", "e", "x", "y", "a"],
+      marginDirection: "a",
+      marginSize: "2",
+      marginSizes: [...defaults, ...nspacers],
+      paddingDirection: "a",
+      paddingSize: "6",
+      paddingSizes: defaults,
+      playgroundText:
+        "Use the controls above to try out the different spacing helpers."
+    };
+  },
+
+  computed: {
+    computedPadding() {
+      return `p${this.paddingDirection}-${this.paddingSize}`;
+    },
+    computedMargin() {
+      return `m${this.marginDirection}-${this.marginSize}`;
+    }
+  }
+};
+</script>
