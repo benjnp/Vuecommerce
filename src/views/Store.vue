@@ -5,7 +5,7 @@
         <Sidebar />
       </v-col>
       <v-col md="9" lg="7">
-        <ProductDisplay />
+        <ProductDisplay :key="filter"/>
       </v-col>
     </v-row>
   </v-container>
@@ -13,11 +13,15 @@
 <script>
 import Sidebar from "../components/store/Sidebar";
 import ProductDisplay from "../components/store/ProductDisplay";
+import { mapState } from "vuex";
 
 export default {
   components: {
     Sidebar,
     ProductDisplay
+  },
+  computed: {
+    ...mapState(["filter"])
   }
 };
 </script>

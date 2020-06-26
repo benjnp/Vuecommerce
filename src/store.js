@@ -7,6 +7,7 @@ Vue.use(Vuex)
 export const store = new Vuex.Store({
     state: {
         products,
+        filter: 0,
         snackbar: {
             show: false,
             variant: 'success',
@@ -33,5 +34,8 @@ export const store = new Vuex.Store({
                 ...settings
             }
         },
+        setFilter(state, val) {
+            state.filter = val;
+        }
     }
 })

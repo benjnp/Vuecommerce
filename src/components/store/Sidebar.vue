@@ -6,7 +6,7 @@
       class="pa-8"
     >
       <h3>Filters</h3>
-      <v-radio-group v-model="priceFilter" :mandatory="true">
+      <v-radio-group v-model="priceFilter" :mandatory="true" @change="filter">
         <v-radio
           v-for="(price, i) in prices"
           :key="i"
@@ -43,6 +43,16 @@ export default {
       priceFilter: 0,
       checkbox: true
     };
+  },
+  methods: {
+    filter() {
+      this.$store.commit("setFilter", this.priceFilter);
+      console.log(this.priceFilter);
+    }
+    // addToCart(index, quantity = 1) {
+    //   this.$store.commit("addItemToCart", { itemId: index, quantity });
+    //   this.$store.commit("updateSnackbar", { show: true });
+    // }
   }
 };
 </script>
