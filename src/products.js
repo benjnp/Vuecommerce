@@ -1,32 +1,37 @@
 export default [
   {
-    image: 'https://raw.githubusercontent.com/gwenf/vuetify-responsive/master/public/img/products/product-1.jpg',
-    name: 'Nintendo Switch',
-    price: 299.99
+    image: require('@/assets/S20Plus.jpg'),
+    name: 'Galaxy S20 Plus',
+    price: 1099
   },
   {
-    image: 'https://raw.githubusercontent.com/gwenf/vuetify-responsive/master/public/img/products/product-2.jpg',
-    name: 'Gameboy Mug',
-    price: 19.99
+    image: require('@/assets/Iphone.jpg'),
+    name: 'iPhone',
+    price: 1099
   },
   {
-    image: 'https://raw.githubusercontent.com/gwenf/vuetify-responsive/master/public/img/products/product-3.jpg',
-    name: 'Family Computer',
-    price: 70
+    image: require('@/assets/Groot.jpeg'),
+    name: 'Groot Action Figure',
+    price: 15
   },
   {
-    image: 'https://raw.githubusercontent.com/gwenf/vuetify-responsive/master/public/img/products/product-4.jpg',
-    name: 'Jeopardy Game',
+    image: require('@/assets/Monopoly.png'),
+    name: 'Monopoly',
     price: 30
   },
   {
-    image: 'https://raw.githubusercontent.com/gwenf/vuetify-responsive/master/public/img/products/product-5.jpg',
-    name: 'Game Cube',
-    price: 99.99
+    image: require('@/assets/GHome.jpg'),
+    name: 'Google Home',
+    price: 125
   },
   {
-    image: 'https://raw.githubusercontent.com/gwenf/vuetify-responsive/master/public/img/products/product-6.jpg',
-    name: 'Gameboy Color',
-    price: 45
-  }
+    image: require('@/assets/Xbox.jpg'),
+    name: 'Xbox Series X',
+    price: 549
+  },
+  {
+    image: require('@/assets/PS5.jpg'),
+    name: 'PS5',
+    price: 499.99
+  },
 ]

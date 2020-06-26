@@ -43,19 +43,6 @@ export default {
       this.$store.commit("addItemToCart", { itemId: index, quantity });
       this.$store.commit("updateSnackbar", { show: true });
     }
-    // filter() {
-    //   //const allowed = 50;
-    //   let filtered = this.products.filter(prod => prod.price > this.filter);
-
-    //   // const filtered = Object.keys(this.products.price)
-    //   // .filter(key => allowed.includes(key))
-    //   // .reduce((obj, key) => {
-    //   //   obj[key] = raw[key];
-    //   //   return obj;
-    //   // }, {});
-
-    //   console.log(filtered);
-    // }
   },
   created() {
     switch (this.filter) {
@@ -63,20 +50,20 @@ export default {
         this.filteredProducts = this.products;
         break;
       case 1:
-        this.filteredProducts = this.products.filter(prod => prod.price < 25);
+        this.filteredProducts = this.products.filter(prod => prod.price <= 25);
         break;
       case 2:
         this.filteredProducts = this.products.filter(
-          prod => prod.price > 24 && prod.price < 101
+          prod => prod.price >= 25 && prod.price <= 100
         );
         break;
       case 3:
         this.filteredProducts = this.products.filter(
-          prod => prod.price > 99 && prod.price < 501
+          prod => prod.price >= 100 && prod.price <= 500
         );
         break;
       case 4:
-        this.filteredProducts = this.products.filter(prod => prod.price > 499);
+        this.filteredProducts = this.products.filter(prod => prod.price >= 500);
         break;
     }
   }
